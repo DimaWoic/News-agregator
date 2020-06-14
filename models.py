@@ -21,6 +21,7 @@ class News(models.Model):
     icon = models.CharField(max_length=1000, verbose_name='ссылка на картинку', blank=True, null=True)
     description = models.TextField(editable=False, verbose_name='Текст новости', blank=True, null=True)
     url_source = models.URLField(max_length=1000, verbose_name='ссылка на ресурс', blank=True, null=True)
+    media = models.URLField(max_length=1000, verbose_name='Ссылка на медиа', blank=True, null=True)
 
     class Meta:
         verbose_name = 'новость'

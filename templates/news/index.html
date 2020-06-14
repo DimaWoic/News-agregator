@@ -12,43 +12,22 @@
 
 {% block content %}
 
-{% for n in page_list %}
-<div id="news">
-    <div >
-    <div class="border mb-4 rounded border-secondary" id="media">
-    <div class="media m-2" >
-        <img class="align-self-start m-4 rounded" src="{% get_static_prefix %}{{n.icon}}" alt="image" height="60" width="60">
-        <div class="media-body" id="media-body">
-          <h6 class="mt-0" id="title"><a href="{{n.url_source}}" target=_blank id="title_news">{{n.title}}</a></h6>
-            <details>
-                <summary class="mb-2" id="details">Подробнее</summary>
-                <p id="description"><h8>{{ n.description }}</h8></p>
-            </details>
-          <p><h8><a class="#" href="{% url 'by_category' n.category.pk %}" id="category_news">{{ n.category }}</a></h8></p>
-         <p class="mb-4 text-muted" id="date_time">{{n.published|timesince }} назад</p>
-        </div>
-      </div>
-    </div>
-        </div>
-    </div>
-    {% endfor %}
-<nav aria-label="...">
-  <ul class="pagination justify-content-center">
-    {% if page.has_previous %}
-    <li class="page-item"><a class="page-link c-page-link" href="?page={{ page.previous_page_number }}">Назад</a></li>
-    {% endif %}
-    {% if page.has_previous %}
-    <li class="page-item"><a class="page-link c-page-link" href="?page={{ page.previous_page_number }}">{{ page.previous_page_number }}</a></li>
-    {% endif %}
-    <li class="page-item"><a class="page-link is-active" href="#">{{ page.number }}</a></li>
-    {% if page.has_next %}
-    <li class="page-item"><a class="page-link c-page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
-    {% endif %}
-    {% if page.has_next %}
-    <li class="page-item"><a class="page-link c-page-link" href="?page={{ page.next_page_number }}">Вперёд</a></li>
-    {% endif %}
-  </ul>
-</nav>
-</nav>
+{% for n in news %}
+<div class="col mb-2">
+  <div class="card ml-4" style="width: 18rem;">
+  <img src="{{ n.media }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">{{ n.title }}</p>
+    <p class="card-text"><h8><a href="{% url 'by_category' n.category.pk %}" id="category_news">{{ n.category }}</a></h8></p>
+    <details>
+      <summary class="mb-2" id="details">Подробнее</summary>
+          <p id="description"><h8>{{ n.description }}</h8></p>
+    </details>
+    <p class="card-text">{{n.published|timesince }} назад</p>
+  </div>
+</div>
+</div>
+
+{% endfor %}
 
 {% endblock %}

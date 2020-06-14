@@ -24,6 +24,10 @@ def add_to_base(img_file, news_parser_rss):
         description = p['description']
         source = p['source']
         link_news = p['link']
+        if p['media'] == None:
+            pass
+        else:
+           media = p['media']
 
         news = News.objects.all()
         for n in news:
@@ -37,12 +41,14 @@ def add_to_base(img_file, news_parser_rss):
                 new.category_id = Category.objects.get(name='Россия').pk
                 new.url_source = link_news
                 new.description = description
+                new.media = media
                 new.icon = 'news/images/' + img_file
                 new.save()
 
             elif category.lower().replace(' ', '') in economic:
                 new.category_id = Category.objects.get(name='Экономика').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -50,6 +56,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') in sng:
                 new.category_id = Category.objects.get(name='СНГ').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -57,6 +64,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') in turism:
                 new.category_id = Category.objects.get(name='Туризм').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -66,12 +74,14 @@ def add_to_base(img_file, news_parser_rss):
                 new.category_id = Category.objects.get(name='Мир').pk
                 new.url_source = link_news
                 new.description = description
+                new.media = media
                 new.icon = 'news/images/' + img_file
                 new.save()
 
             elif category.lower().replace(' ', '') == "спорт":
                 new.category_id = Category.objects.get(name='Спорт').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -79,6 +89,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') in scince:
                 new.category_id = Category.objects.get(name='Наука и техника').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -86,6 +97,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') == "силовыеструктуры":
                 new.category_id = Category.objects.get(name='Силовые структуры').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -93,6 +105,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') in politics:
                 new.category_id = Category.objects.get(name='Политика').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -100,6 +113,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') in culture:
                 new.category_id = Category.objects.get(name='Культура').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -107,6 +121,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') == "происшествия":
                 new.category_id = Category.objects.get(name='Происшествия').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -114,6 +129,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') == "нацпроекты":
                 new.category_id = Category.objects.get(name='Нацпроекты').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()
@@ -121,6 +137,7 @@ def add_to_base(img_file, news_parser_rss):
             elif category.lower().replace(' ', '') == "авто":
                 new.category_id = Category.objects.get(name='Авто').pk
                 new.url_source = link_news
+                new.media = media
                 new.description = description
                 new.icon = 'news/images/' + img_file
                 new.save()

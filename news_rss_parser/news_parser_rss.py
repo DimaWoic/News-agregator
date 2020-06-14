@@ -17,6 +17,10 @@ def rss_parser(url):
             get_title = get_item.find('title').text
             get_link = get_item.find('guid').text
             try:
+                get_media = get_item.find('enclosure').get('url')
+            except:
+                get_media = None
+            try:
                 get_category = get_item.find('category').text
                 list_category = []
                 for c in get_all_item:
@@ -30,7 +34,7 @@ def rss_parser(url):
                 all_category = None
             get_description = get_item.find('description').text
             output = {'title': get_title, 'category': get_category, 'source': news_source_title, 'link': get_link,
-                      'description': get_description, 'all_category': all_category}
+                      'description': get_description, 'all_category': all_category, 'media': get_media}
 
         return output
     except Exception as e:
