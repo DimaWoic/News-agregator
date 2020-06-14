@@ -1,0 +1,301 @@
+@media (min-device-width: 993px) {
+    body {
+
+    background-color: #243a4f;
+
+    }
+
+    #nav {
+
+    background-color: #344e66;
+
+    }
+
+    #leftside {
+
+    float: left;
+    width: 20%
+
+    }
+
+    #content {
+
+    float: left;
+    width: 700px;
+
+    }
+
+    #rightside {
+
+    float: left;
+    width: 20%
+
+    }
+
+    #lside {
+    float: right;
+    background-color: #344e66;
+
+   }
+
+   #li_item {
+        font-family: 'Montserrat', sans-serif;
+        color: #7eb3e4;
+        text-decoration: none;
+        size: 8px;
+        }
+
+    #li_item:hover {
+        background-color: #3f5f7c;
+        font-family: 'Montserrat', sans-serif;
+        color: #8dacca;;
+        text-decoration: none;
+        }
+
+    #media {
+
+    background-color: #344e66;
+
+    }
+
+    #media:hover {
+
+    background-color: #3f5f7c;
+    }
+
+    #title_news {
+    font-family: 'Russo One', sans-serif;
+    color: #7eb3e4;
+    text-decoration: none;
+
+}
+
+#title_news:hover {
+    font-family: 'Russo One', sans-serif;
+    color: #729ec7;
+    text-decoration: none;
+
+}
+
+#category_news {
+    font-family: 'Montserrat', sans-serif;
+    color: #7eb3e4;
+    text-decoration: none;
+    size: 8px;
+}
+
+#category_news:hover {
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+}
+
+#lside {
+    float: right;
+    background-color: #344e66;
+
+}
+
+.brand_title {
+    font-family: 'Caveat', cursive;
+    size: 16px;
+}
+
+navbarNav {
+    text-decoration: none;
+}
+
+#li_item {
+    font-family: 'Montserrat', sans-serif;
+    color: #7eb3e4;
+    text-decoration: none;
+    size: 8px;
+    }
+
+#li_item:hover {
+    background-color: #3f5f7c;
+    font-family: 'Montserrat', sans-serif;
+    color: #8dacca;;
+    text-decoration: none;
+}
+
+.c-page-link {
+    background-color: #344e66;
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;
+    text-decoration: none;
+}
+
+.c-page-link:hover {
+    background-color: #3f5f7c;
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+}
+
+.c-page-item {
+    background-color: #344e66;
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+    border: #7eb3e4
+}
+
+.is-active {
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+}
+
+a {
+    outline: none;
+}
+
+#cat-nav {
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;
+    background-color: #344e66;
+}
+
+#feedback {
+    font-family: 'Russo One', sans-serif;
+    color: #729ec7;
+    background-color: #344e66;
+}
+
+.id_text {
+    width: 95%;
+    height: 250px;
+
+}
+
+#brand-m {
+
+    display: none;
+
+}
+
+
+}
+
+
+@media (max-device-width: 992px) {
+
+    body {
+
+    background-color: #243a4f;
+
+    }
+
+    #nav {
+
+    background-color: #344e66
+
+    }
+
+    #leftside {
+
+    display: none;
+
+    }
+
+    #rightside {
+
+    display: none;
+
+    }
+
+    #cat-nav {
+
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;
+    background-color: #344e66;
+    }
+
+    #media {
+    background-color: #344e66;
+    }
+
+    #title_news {
+    font-family: 'Inter', sans-serif;
+    color: #7eb3e4;
+    text-decoration: none;
+
+    }
+
+    #title_news:hover {
+    font-family: 'Inter', sans-serif;
+    color: #729ec7;
+    text-decoration: none;
+
+    }
+
+    #category_news {
+    font-family: 'Montserrat', sans-serif;
+    color: #7eb3e4;
+    text-decoration: none;
+    size: 6px;
+    }
+
+    #category_news:hover {
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+    }
+
+    .c-page-link {
+    background-color: #344e66;
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;
+    text-decoration: none;
+}
+
+.c-page-link:hover {
+    background-color: #3f5f7c;
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+}
+
+.c-page-item {
+    background-color: #344e66;
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+    border: #7eb3e4
+}
+
+.is-active {
+    font-family: 'Montserrat', sans-serif;
+    color: #729ec7;;
+    text-decoration: none;
+}
+
+a {
+    outline: none;
+}
+
+#brand-img {
+    display: none;
+}
+
+button {
+
+    background: #344e66;
+
+}
+
+    #dropdown-menu {
+
+    background-color: #344e66;
+
+    }
+
+    #dropdown-item {
+
+    color: #7eb3e4;
+    font-family: 'Inter', sans-serif;
+
+    }
+
+}

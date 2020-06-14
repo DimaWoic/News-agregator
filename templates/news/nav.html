@@ -1,0 +1,16 @@
+{% extends "news/layout/base.html" %}
+{% load static %}
+
+{% block nav %}
+
+
+                    <ul class="nav flex-column border mb-4 rounded border-secondary" id="lside">
+                        <li class="nav-item" id="li_item"><a class="nav-link" id="title_news" href="{% url 'index'%}">Все новости</a></li>
+                        {% for c in nav_categories %}
+                        <li class="nav-item" id="li_item"><a class="nav-link" id="title_news" href="{% url 'by_category' c.pk %}">{{c.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+
+           
+
+{% endblock nav %}

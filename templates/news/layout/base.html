@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat:700|Montserrat|Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(61360927, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/61360927" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+    <link rel="icon" type="image/x-icon" href="{% static 'news/images/soroka.png' %}">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Rumagpie.ru - Лента новостей России и мира</title>
+    <meta name="description" content="Новости, лента новостей, новости России и Мира. Семь дней в неделю, 24 часа в сутки."/>
+    <meta name="keywords" content="Новости, лента новостей, новости России и Мира. Семь дней в неделю, 24 часа в сутки."/>
+    <meta name="yandex-verification" content="b8d77b6ed14a6c55" />
+    <meta name="google-site-verification" content="CfY4giZUqi_p-OZZ05wJbxoUuOMpBV9JEkXwBiu9Xrg" />
+</head>
+<body>
+  <div class="p-2 mb-2">
+    <nav class="navbar navbar-expand navbar-dark rounded sticky-top" id="nav">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand ml-3 mr-3" href="{% url 'index' %}" id="brand-img">
+                <img src="{% static 'news/images/soroka.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                Magpie</a>
+
+        <div class="dropdown" id="brand-m">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="{% static 'news/images/soroka.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+
+        </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'index' %}" id="dropdown-item">Все новости</a>
+              {% for c in categories %}
+            <a class="dropdown-item" href="{% url 'by_category' c.pk %}" id="dropdown-item">{{c.name}}</a>
+              {% endfor %}
+          </div>
+        </div>
+
+
+
+
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <a class="navbar-brand ml-3 mr-3" href="{% url 'feedback' %}">
+                <img src="{% static 'news/images/feedback.png' %}" width="30" height="30" class="#" alt=""></a>
+        </div>
+    </nav>
+  </div>
+    <div class="container-fluid" id="container">
+        <div id="leftside">
+            <ul class="nav flex-column border mb-4 mr-4 rounded border-secondary" id="lside">
+                    <li class="nav-item"><a class="nav-link" id="li_item" href="{% url 'index' %}">Все новости</a></li>
+                    {% for c in categories %}
+                    <li class="nav-item"><a class="nav-link" id="li_item" href="{% url 'by_category' c.pk %}">{{c.name}}</a></li>
+                    {% endfor %}
+                </ul>
+        </div>
+        <div id="content">
+            <div class="border mb-4 rounded border-secondary" id="cat-nav">
+                <div class="media m-2" >
+                    <div class="media-body" id="media-body">
+                        {% block category %}
+
+
+                        {% endblock %}
+                    </div>
+                  </div>
+                </div>
+            <div class="paginator">
+                {% block content %}
+
+
+                {% endblock %}
+            </div>
+            <div id="go_to_top_m">
+                <a href="#"><img src="{% static 'news/images/gototop.png' %}" width="35px" height="35px"></a>
+            </div>
+        </div>
+        <div id="rightside"></div>
+            <div id="go_to_top">
+                 <a href="#"><img src="{% static 'news/images/gototop.png' %}" width="35px" height="35px"></a>
+            </div>
+
+    </div>
+
+
+        <script src="{% static 'news/js/jquery-3.4.1.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="{% static 'news/js/bootstrap.js' %}"></script>
+        <script src="{% static 'news/js/script.js' %}"></script>
+</body>
+</html>
