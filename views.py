@@ -12,42 +12,19 @@ from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 
-
 def index(request):
-    today = datetime.datetime.today().timestamp()
-    lastday = datetime.datetime.fromtimestamp(today - 86400)
-    news = News.objects.all()
+    news = News.objects.filter(published__date__gte=datetime.datetime.today().date())
     categories = Category.objects.all()
-    paginator = Paginator(news, 20)
-    try:
-        page_num = request.GET.get('page')
-    except EmptyPage:
-        page_num = paginator.get_page(paginator.num_pages)
-    except PageNotAnInteger:
-        page_num = paginator.get_page(paginator.num_pages)
-    page = paginator.get_page(page_num)
-    page_list = page.object_list
-    context = {'news': news, 'categories': categories, 'page': page, 'page_list': page_list}
+    context = {'news': news, 'categories': categories}
     return render(request, 'news/index.html', context)
 
 
 def by_category(request, category_id):
-    news = News.objects.filter(category=category_id)
+    news = News.objects.filter(category=category_id).filter(published__date__gte=datetime.datetime.today().date())
     categories = Category.objects.all()
     current_category = Category.objects.get(pk=category_id)
-    paginator = Paginator(news, 20)
-    try:
-        page_num = request.GET.get('page')
-    except EmptyPage:
-        page_num = paginator.get_page(paginator.num_pages)
-    except PageNotAnInteger:
-        page_num = paginator.get_page(paginator.num_pages)
-    page = paginator.get_page(page_num)
-    page_list = page.object_list
-    context = {'news': news, 'categories': categories, 'current_category': current_category, 'page': page, 'page_list': page_list}
+    context = {'news': news, 'categories': categories, 'current_category': current_category}
     return render(request, 'news/by_category.html', context)
-
-
 
 
 def feedback(request):
