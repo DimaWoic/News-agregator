@@ -1,5 +1,9 @@
 from django.db import models
 from django.core import validators
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+import requests
+
 
 
 class Category(models.Model):
@@ -42,3 +46,29 @@ class Messages(models.Model):
         verbose_name = 'сообщение'
         verbose_name_plural = 'сообщения'
         ordering = ['-published']
+
+
+class TUsers(models.Model):
+    user_id = models.IntegerField(verbose_name='ID Пользователя телеграм')
+    user = models.CharField(max_length=100, verbose_name='ник')
+    subscription = models.BooleanField(verbose_name='подписка', null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'пользователь телеграмм'
+        verbose_name_plural = 'пользователи телеграмм'
+
+    def __str__(self):
+        self.user
+
+
+def news_sender():
+    url = 'https://api.telegram.org/bot1263816311:AAHtoS8SYIDL6i1LBPH8Csmf7k985MbpcgA/'
+    news = News.objects.first()
+    msg_title = news.title
+    msg_source = news.url_source
+    requests.get(url + 'sendMessage?chat_id=' + '@rumagpie' + '&text=' + msg_title + "\n" + msg_source)
+
+@receiver(post_save, sender=News)
+def message_sender(sender, **kwargs):
+    if kwargs['created']:
+        news_sender()

@@ -12,22 +12,63 @@
 
 {% block content %}
 
-{% for n in news %}
-<div class="col mb-2 ml-4">
-  <div class="card ml-1 mr-2" style="width: 18rem;">
-  <img src="{{ n.media }}" class="card-img-top" alt="...">
+{% for n in page_list %}
+  {% if n.media != None %}
+<div class="mb-2 ">
+  <div class="card ml-1 mr-2 border border-secondary rounded" id="media">
+    <img src="{{ n.media }}" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">{{ n.title }}</p>
+    <p class="card-text"><a href="{{n.url_source}}" target=_blank  id="title_news">{{n.title}}</a></p>
     <p class="card-text"><h8><a href="{% url 'by_category' n.category.pk %}" id="category_news">{{ n.category }}</a></h8></p>
     <details>
       <summary class="mb-2" id="details">Подробнее</summary>
           <p id="description"><h8>{{ n.description }}</h8></p>
     </details>
-    <p class="card-text">{{n.published|timesince }} назад</p>
+    <p class="card-text text-muted" id="date_time">{{n.published|timesince }} назад</p>
   </div>
 </div>
 </div>
+{% else %}
+
+<div>
+    <div class="border mb-2 rounded border-secondary" id="media">
+    <div class="media m-2" >
+        <img class="align-self-start m-4 rounded" src="{% get_static_prefix %}{{n.icon}}" alt="image" height="60" width="60">
+        <div class="media-body" id="media-body">
+          <div class="img">
+          <h6 class="mt-0" id="title"><a href="{{n.url_source}}" target=_blank  id="title_news">{{n.title}}</a></h6>
+          </div>
+          <details>
+                <summary class="mb-2" id="details">Подробнее</summary>
+                <p id="description"><h8>{{ n.description }}</h8></p>
+            </details>
+          <p><h8><a class="#" href="{% url 'by_category' n.category.pk %}" id="category_news">{{ n.category }}</a></h8></p>
+         <p class="mb-4 text-muted" id="date_time">{{n.published|timesince }} назад</p>
+        </div>
+      </div>
+    </div>
+        </div>
+
+{% endif %}
 
 {% endfor %}
+
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    {% if page.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">Previous</a></li>
+    {% endif %}
+    {% if page.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.previous_page_number }}">{{ page.previous_page_number }}</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link" href="#">{{ page.number }}</a></li>
+    {% if page.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
+    {% endif %}
+    {% if page.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page.next_page_number }}">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}

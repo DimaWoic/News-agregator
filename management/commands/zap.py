@@ -11,7 +11,9 @@ from .gazetaru import gazetaru
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        interfax()
-        lenta()
-        rg()
-        gazetaru()
+        while True:
+            interfax()
+            lenta()
+            rg()
+            gazetaru()
+            time.sleep(10)

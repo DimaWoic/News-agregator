@@ -24,10 +24,7 @@ def add_to_base(img_file, news_parser_rss):
         description = p['description']
         source = p['source']
         link_news = p['link']
-        if p['media'] == None:
-            pass
-        else:
-           media = p['media']
+        media = p['media']
 
         news = News.objects.all()
         for n in news:
