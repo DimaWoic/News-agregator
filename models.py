@@ -3,6 +3,9 @@ from django.core import validators
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import requests
+import smtplib
+from email.message import EmailMessage
+
 
 
 
@@ -31,6 +34,22 @@ class News(models.Model):
         verbose_name = 'новость'
         verbose_name_plural = 'новости'
         ordering  = ['-published']
+
+    def __str__(self):
+        return self.title
+
+
+class SarNews(models.Model):
+    published = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=300, verbose_name='Заголовок', blank=True)
+    description = models.TextField(editable=False, verbose_name='Текст новости', blank=True, null=True)
+    url_source = models.URLField(max_length=1000, verbose_name='ссылка на новость', blank=True, null=True)
+    media = models.URLField(max_length=1000, verbose_name='Ссылка на медиа', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'новости Саратова'
+        verbose_name_plural = 'новости Саратова'
+        ordering = ['-published']
 
     def __str__(self):
         return self.title
@@ -71,4 +90,45 @@ def news_sender():
 @receiver(post_save, sender=News)
 def message_sender(sender, **kwargs):
     if kwargs['created']:
-        news_sender()
+        pass
+        #news_sender()
+
+def sar_news_sender():
+    url = 'https://api.telegram.org/bot1263816311:AAHtoS8SYIDL6i1LBPH8Csmf7k985MbpcgA/'
+    news = SarNews.objects.first()
+    msg_title = news.title
+    msg_source = news.url_source
+    requests.get(url + 'sendMessage?chat_id=' + '@rumagpie_sar' + '&text=' + msg_title + "\n" + msg_source)
+
+@receiver(post_save, sender=SarNews)
+def sar_message_sender(sender, **kwargs):
+    if kwargs['created']:
+        pass
+        #sar_news_sender()
+
+def send_email():
+
+    sender_msg = Messages.objects.first()
+
+    fromaddr = "tovary164@yandex.ru"
+    toaddrs = "wdv85@mail.ru"
+    subject = "rumagpie.ru: У Вас новое сообщение от " + sender_msg.name
+
+    text = sender_msg.name + '[' + sender_msg.email + ']' + ':' + '\n' + sender_msg.text
+
+    msg = EmailMessage()
+    msg["Subject"] = subject
+    msg["From"] = fromaddr
+    msg["To"] = toaddrs
+
+    msg.set_content(text)
+
+    server = smtplib.SMTP_SSL(host='smtp.yandex.ru', port=465)
+    server.login(user='tovary164', password='zypvnpthaqsqgsbt')
+    server.sendmail(from_addr=fromaddr, to_addrs=toaddrs, msg=msg.as_string())
+    server.close()
+
+@receiver(post_save, sender=Messages)
+def msg_notification(sender, **kwargs):
+    if kwargs['created']:
+        send_email()

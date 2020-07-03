@@ -1,12 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import asyncio
 
-#u ='https://www.vzsar.ru/rss'
-#u = 'https://www.4vsar.ru/rss'
-u ='https://saratov24.tv/rss'
-
-list_urls = ['https://www.vzsar.ru/rss', 'https://www.4vsar.ru/rss', 'https://saratov24.tv/rss']
 
 class SarNewsParser():
 
@@ -45,29 +39,3 @@ class SarNewsParser():
     def news_media(self):
         n_media = self.item.find('enclosure').get('url')
         return n_media
-
-
-async def vzsar_ru():
-    rss = SarNewsParser(list_urls[0])
-    await asyncio.sleep(0)
-    print(rss.news_title(), ' ', rss.get_title_channel())
-
-
-async def vsar():
-    rss = SarNewsParser(list_urls[1])
-    await asyncio.sleep(0)
-    print(rss.news_title(), ' ', rss.get_title_channel())
-
-
-async def sartf():
-    rss = SarNewsParser(list_urls[2])
-    await asyncio.sleep(0)
-    print(rss.news_title(), ' ', rss.get_title_channel())
-
-
-ioloop = asyncio.get_event_loop()
-
-tasks = [ioloop.create_task(vzsar_ru()), ioloop.create_task(vsar()), ioloop.create_task(sartf())]
-wait = asyncio.wait(tasks)
-ioloop.run_until_complete(wait)
-ioloop.close()

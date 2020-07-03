@@ -4,6 +4,7 @@ from .interfax import interfax
 from .lenta_ru import lenta
 from .rg import rg
 from .gazetaru import gazetaru
+from news.sarnews.sarnews_parser import sar_news_parser
 
 
 
@@ -16,4 +17,5 @@ class Command(BaseCommand):
             lenta()
             rg()
             gazetaru()
-            time.sleep(10)
+            sar_news_parser()
+            time.sleep(5)

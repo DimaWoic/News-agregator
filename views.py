@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import MessageForm
-from django.core.mail import EmailMessage
 from django.views.generic import TemplateView
 
 
@@ -47,8 +46,6 @@ def feedback(request):
        feed = MessageForm(request.POST)
        if feed.is_valid():
            feed.save()
-           email = EmailMessage(subject='У Вас новое сообщение в форме обратной связи на сайта новостей Magpie',
-                                 body=str(Messages.objects.first().text), to=['wdv85@mail.ru'])
            return render(request, 'news/msgsend.html')
        else:
           context = {'form': feed}

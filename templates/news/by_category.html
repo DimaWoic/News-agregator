@@ -13,19 +13,23 @@
 
 {% for n in page_list %}
   {% if n.media != None %}
-<div class="mb-2 ">
-  <div class="card ml-1 mr-2 border border-secondary rounded" id="media">
-    <img src="{{ n.media }}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <p class="card-text"><a href="{{n.url_source}}" target=_blank  id="title_news">{{n.title}}</a></p>
-    <p class="card-text"><h8><a href="{% url 'by_category' n.category.pk %}" id="category_news">{{ n.category }}</a></h8></p>
-    <details>
-      <summary class="mb-2" id="details">Подробнее</summary>
-          <p id="description"><h8>{{ n.description }}</h8></p>
-    </details>
-    <p class="card-text text-muted" id="date_time">{{n.published|timesince }} назад</p>
+<div class="card mb-3">
+  <div class="row no-gutters" id="media">
+    <div class="col-md-4">
+      <img src="{{ n.media }}" class="card-img" alt="">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><a href="{{n.url_source}}" target=_blank  id="title_news">{{n.title}}</a></h5>
+        <p class="card-text"><h8><a href="{% url 'by_category' n.category.pk %}" id="category_news">{{ n.category }}</a></h8></p>
+        <details>
+              <summary class="mb-2" id="details">Подробнее</summary>
+                  <p id="description"><h8>{{ n.description }}</h8></p>
+        </details>
+          <p class="card-text text-muted" id="date_time">{{n.published|timesince }} назад</p>
+      </div>
+    </div>
   </div>
-</div>
 </div>
 {% else %}
 
