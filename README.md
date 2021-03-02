@@ -1,6 +1,7 @@
 # news
+Сайт-агрегатор новостей
 python 3.5
-for work this app need this module:
+for work this app need this module(для работы агрегаторы нужны следующие модули):
 django 2.2
 bs4
 requests
