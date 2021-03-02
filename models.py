@@ -94,7 +94,7 @@ def message_sender(sender, **kwargs):
         #news_sender()
 
 def sar_news_sender():
-    url = 'https://api.telegram.org/bot1263816311:AAHtoS8SYIDL6i1LBPH8Csmf7k985MbpcgA/'
+    url = 'https://api.telegram.org/'
     news = SarNews.objects.first()
     msg_title = news.title
     msg_source = news.url_source
@@ -124,7 +124,7 @@ def send_email():
     msg.set_content(text)
 
     server = smtplib.SMTP_SSL(host='smtp.yandex.ru', port=465)
-    server.login(user='tovary164', password='zypvnpthaqsqgsbt')
+    server.login(user='tovary164', password='')
     server.sendmail(from_addr=fromaddr, to_addrs=toaddrs, msg=msg.as_string())
     server.close()
 
