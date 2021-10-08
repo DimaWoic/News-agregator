@@ -81,7 +81,7 @@ class TUsers(models.Model):
 
 
 def news_sender():
-    url = 'https://api.telegram.org/bot1263816311:AAHtoS8SYIDL6i1LBPH8Csmf7k985MbpcgA/'
+    url = 'https://api.telegram.org/bot_!!!token!!!!/'
     news = News.objects.first()
     msg_title = news.title
     msg_source = news.url_source
